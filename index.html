@@ -515,6 +515,36 @@
 </section>
 
 <script>
+  /* ── тихое уведомление Даше: открыл / дошёл / подписал ── */
+  (function () {
+    var TOPIC = "dgv-fu6vxnxi4v90jz";
+
+    function ping(text, tags) {
+      try {
+        if (sessionStorage.getItem("p_" + text)) return;
+        sessionStorage.setItem("p_" + text, "1");
+      } catch (e) {}
+      try {
+        fetch("https://ntfy.sh/" + TOPIC, {
+          method: "POST",
+          body: text,
+          headers: { "Title": "Договор о примирении", "Tags": tags || "heart" },
+          keepalive: true
+        }).catch(function () {});
+      } catch (e) {}
+    }
+
+    window.__ping = ping;
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", function () { ping("Открыл страницу", "eyes"); });
+    } else {
+      ping("Открыл страницу", "eyes");
+    }
+  })();
+</script>
+
+<script>
   /* ══════════ ЧТО МЕНЯТЬ ══════════ */
 
   const HER = { name: "Даша", email: "dkrivkina@gmail.com" };
@@ -629,6 +659,7 @@
     s2.classList.add("on");
     window.scrollTo(0, 0);
     sizeSig();
+    if (window.__ping) window.__ping("Нажал «Нет» — читает договор", "cat");
   });
 
   /* ─── договор ─── */
@@ -987,6 +1018,7 @@
     document.getElementById("clear").style.visibility = "hidden";
     email.disabled = true;
     status.textContent = "договор вступил в силу";
+    if (window.__ping) window.__ping("ПОДПИСАЛ 💜 " + (email.value.trim() || ""), "tada,heart");
     rain();
 
     try {
