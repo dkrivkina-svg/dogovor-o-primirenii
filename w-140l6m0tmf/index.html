@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Что происходит с договором</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%80%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    color-scheme: dark;
+    --night:   #28123F;
+    --card:    #351C52;
+    --card-2:  #412363;
+    --line:    #50306F;
+    --text:    #F6EEFA;
+    --text-2:  #C3ACD6;
+    --text-3:  #9B86AE;
+    --violet:  #A986F0;
+    --pink:    #EFA8CE;
+    --green:   #7FD9A8;
+    --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--night);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(123, 79, 216, 0.4), transparent 58%),
+      radial-gradient(ellipse at 85% 95%, rgba(212, 85, 155, 0.24), transparent 55%);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 40px 18px 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  header { display: flex; flex-direction: column; gap: 7px; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 27px;
+    font-weight: 680;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+
+  .live {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 0 rgba(127, 217, 168, 0.6);
+    animation: pulse 2.2s ease-out infinite;
+  }
+
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(127, 217, 168, 0.55); }
+    70%  { box-shadow: 0 0 0 11px rgba(127, 217, 168, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(127, 217, 168, 0); }
+  }
+
+  .feed { display: flex; flex-direction: column; gap: 10px; }
+
+  .ev {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--violet);
+    border-radius: 10px;
+    padding: 14px 16px 15px;
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+    animation: in 0.4s ease-out;
+  }
+
+  @keyframes in {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .ev.signed { border-left-color: var(--pink); background: var(--card-2); }
+
+  .ev .ico { font-size: 25px; line-height: 1.1; flex: 0 0 auto; }
+  .ev .body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .ev .msg { font-size: 16px; font-weight: 520; overflow-wrap: anywhere; }
+  .ev.signed .msg { font-weight: 640; }
+
+  .ev .when {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    color: var(--text-3);
+  }
+
+  .empty {
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    padding: 34px 20px;
+    text-align: center;
+    color: var(--text-3);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .empty .big { font-size: 34px; display: block; margin-bottom: 10px; }
+
+  .foot {
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+    font-size: 12.5px;
+    color: var(--text-3);
+    line-height: 1.6;
+  }
+
+  .foot code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: rgba(169, 134, 240, 0.14);
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: var(--violet);
+  }
+
+  button.clr {
+    margin-top: 12px;
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--text-3);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+
+  button.clr:hover { color: var(--text-2); border-color: var(--violet); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dot { animation: none; }
+    .ev { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="eyebrow">Договор о примирении</span>
+    <h1>Что происходит</h1>
+    <span class="live"><span class="dot"></span><span id="live">слушаю…</span></span>
+  </header>
+
+  <div class="feed" id="feed"></div>
+
+  <div class="foot">
+    Эта страница сама обновляется, держи её открытой или заходи когда угодно — события сохраняются прямо здесь, в браузере.<br><br>
+    Хочешь пуши на телефон: приложение <strong>ntfy</strong> → <strong>+</strong> → тема <code>dgv-fu6vxnxi4v90jz</code>
+    <br>
+    <button class="clr" id="clr" type="button">очистить историю</button>
+  </div>
+
+</div>
+
+<script>
+  const TOPIC = "dgv-fu6vxnxi4v90jz";
+  const KEY = "dgv-events-v1";
+  const feed = document.getElementById("feed");
+  const live = document.getElementById("live");
+
+  let events = [];
+  try { events = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { events = []; }
+
+  function icon(msg) {
+    if (/ПОДПИСАЛ/i.test(msg)) return "🎉";
+    if (/Нет/i.test(msg)) return "😺";
+    if (/Открыл/i.test(msg)) return "👀";
+    if (/Проверка/i.test(msg)) return "✅";
+    return "💜";
+  }
+
+  function when(ts) {
+    const d = new Date(ts * 1000);
+    const now = new Date();
+    const sameDay = d.toDateString() === now.toDateString();
+    const t = d.toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" });
+    if (sameDay) return "сегодня в " + t;
+    return d.toLocaleDateString("ru-RU", { day: "numeric", month: "long" }) + " в " + t;
+  }
+
+  function render() {
+    if (!events.length) {
+      feed.innerHTML = '<div class="empty"><span class="big">🙀</span>Пока тихо.<br>Как только он откроет ссылку — появится здесь</div>';
+      return;
+    }
+    const sorted = events.slice().sort((a, b) => b.time - a.time);
+    feed.innerHTML = sorted.map(e => `
+      <div class="ev${/ПОДПИСАЛ/i.test(e.message) ? " signed" : ""}">
+        <span class="ico">${icon(e.message)}</span>
+        <span class="body">
+          <span class="msg"></span>
+          <span class="when">${when(e.time)}</span>
+        </span>
+      </div>`).join("");
+    feed.querySelectorAll(".msg").forEach((n, i) => { n.textContent = sorted[i].message; });
+  }
+
+  function add(list) {
+    let added = 0;
+    for (const m of list) {
+      if (!m || m.event !== "message" || !m.message) continue;
+      if (events.some(e => e.id === m.id)) continue;
+      events.push({ id: m.id, time: m.time, message: m.message });
+      added++;
+    }
+    if (added) {
+      try { localStorage.setItem(KEY, JSON.stringify(events)); } catch (e) {}
+      render();
+    }
+  }
+
+  async function poll() {
+    try {
+      const r = await fetch(`https://ntfy.sh/${TOPIC}/json?poll=1&since=all`, { cache: "no-store" });
+      const txt = await r.text();
+      const list = txt.trim().split("\n").filter(Boolean).map(l => {
+        try { return JSON.parse(l); } catch (e) { return null; }
+      });
+      add(list);
+      live.textContent = "на связи · обновлено в " +
+        new Date().toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    } catch (e) {
+      live.textContent = "нет связи, пробую снова…";
+    }
+  }
+
+  document.getElementById("clr").addEventListener("click", () => {
+    events = [];
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    render();
+  });
+
+  render();
+  poll();
+  setInterval(poll, 7000);
+</script>
+</body>
+</html>
