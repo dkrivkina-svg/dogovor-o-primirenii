@@ -1,0 +1,1126 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Договор о примирении</title>
+<meta name="description" content="Договор о примирении. Сторона А уже подписала, дело за Стороной Б">
+<meta property="og:title" content="Договор о примирении">
+<meta property="og:description" content="Сторона А уже всё подписала. Дело за тобой">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%98%BB%3C/text%3E%3C/svg%3E">
+<style>
+  html { -webkit-text-size-adjust: 100%; }
+</style>
+</head>
+<body>
+<style>
+  :root {
+    color-scheme: dark;
+    --night:     #28123F;
+    --paper:     #FBF7FB;
+    --paper-2:   #F1E9F4;
+    --ink:       #291E33;
+    --ink-2:     #6B5B7A;
+    --ink-3:     #9A8CA6;
+    --violet:    #7B4FD8;
+    --lilac:     #C9A8F0;
+    --pink:      #D4559B;
+    --pink-soft: #EFA8CE;
+    --rule:      #E0D4E8;
+    --serif: Georgia, "Palatino Linotype", Palatino, "Times New Roman", serif;
+    --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--night);
+    background-image:
+      radial-gradient(ellipse at 18% 2%, rgba(123, 79, 216, 0.45), transparent 58%),
+      radial-gradient(ellipse at 86% 94%, rgba(212, 85, 155, 0.28), transparent 54%),
+      radial-gradient(ellipse at 60% 50%, rgba(201, 168, 240, 0.10), transparent 62%);
+    color: var(--paper);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+  }
+
+  #petals { position: fixed; inset: 0; pointer-events: none; z-index: 60; }
+
+  .scene { display: none; position: relative; z-index: 2; }
+  .scene.on { display: block; }
+
+  /* ───────── сцена 1 ───────── */
+
+  #s1 { min-height: 100vh; place-items: center; padding: 40px 20px; text-align: center; }
+  #s1.on { display: grid; }
+
+  .orn {
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px; color: var(--lilac); margin-bottom: 22px;
+  }
+
+  .orn i { display: block; width: 52px; height: 1px; background: currentColor; opacity: 0.55; }
+  .orn .cat { font-size: 40px; line-height: 1; animation: sway 3.4s ease-in-out infinite; }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-7deg); }
+    50%      { transform: rotate(7deg); }
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(36px, 8.6vw, 72px);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.015em;
+    line-height: 1.04;
+    text-wrap: balance;
+    max-width: 13ch;
+  }
+
+  .answers { margin-top: 44px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+
+  button {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 560;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 14px 34px;
+    border-radius: 100px;
+    border: 1px solid var(--lilac);
+    background: rgba(201, 168, 240, 0.07);
+    color: var(--paper);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    transition: background 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
+  }
+
+  button .e { font-size: 24px; line-height: 1; letter-spacing: 0; }
+  button:hover { background: rgba(201, 168, 240, 0.18); }
+  button:focus-visible { outline: 2px solid var(--pink-soft); outline-offset: 4px; }
+
+  button.solid {
+    background: var(--violet); border-color: var(--violet); color: #fff;
+    box-shadow: 0 6px 24px rgba(123, 79, 216, 0.45);
+  }
+
+  button.solid:hover { background: #8C63E2; border-color: #8C63E2; }
+  button[disabled] { opacity: 0.3; cursor: default; }
+  button[disabled]:hover { background: var(--violet); }
+
+  #yes.loose {
+    position: fixed; z-index: 30; margin: 0;
+    transition: left 0.19s cubic-bezier(.33,1.4,.6,1), top 0.19s cubic-bezier(.33,1.4,.6,1);
+  }
+
+  .hint {
+    margin: 30px 0 0; min-height: 28px; font-size: 16.5px; font-style: italic;
+    color: var(--pink-soft); opacity: 0; transition: opacity 0.4s ease;
+  }
+
+  .hint.show { opacity: 1; }
+
+  /* ───────── сцена 2 ───────── */
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 54px 18px 90px; }
+
+  .sheet {
+    background: var(--paper);
+    background-image: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+    color: var(--ink);
+    border-radius: 4px;
+    padding: clamp(28px, 6vw, 58px);
+    box-shadow: 0 34px 80px rgba(20, 5, 40, 0.55), 0 2px 0 rgba(255, 255, 255, 0.6) inset;
+    position: relative;
+  }
+
+  .doc-head { text-align: center; display: flex; flex-direction: column; gap: 9px; align-items: center; }
+  .doc-head .cats { font-size: 30px; letter-spacing: 4px; line-height: 1; }
+
+  .doc-head .label {
+    font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--pink);
+  }
+
+  .doc-head h2 {
+    margin: 0; font-size: clamp(25px, 5.4vw, 36px); font-weight: 400;
+    letter-spacing: 0.015em; line-height: 1.14; text-wrap: balance;
+  }
+
+  .doc-head .no {
+    font-family: var(--sans); font-size: 11.5px; letter-spacing: 0.16em; color: var(--ink-3);
+  }
+
+  .rule { height: 1px; background: var(--rule); margin: 26px 0; position: relative; }
+
+  .rule::after {
+    content: "🐾"; position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%); background: var(--paper);
+    padding: 0 12px; font-size: 15px;
+  }
+
+  .preamble {
+    margin: 0; font-size: 16px; line-height: 1.68; color: var(--ink-2);
+    text-align: justify; hyphens: auto;
+  }
+
+  .art { margin-top: 32px; }
+
+  .art-head {
+    display: flex; align-items: baseline; gap: 10px;
+    flex-wrap: wrap; margin-bottom: 13px;
+  }
+
+  .art-head .e { font-size: 21px; line-height: 1; align-self: center; }
+
+  .art-head h3 {
+    margin: 0; font-family: var(--sans); font-size: 11px; font-weight: 620;
+    letter-spacing: 0.17em; text-transform: uppercase; color: var(--violet);
+  }
+
+  .art-head .by {
+    font-family: var(--sans); font-size: 9.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--pink);
+    border: 1px solid rgba(212, 85, 155, 0.35);
+    border-radius: 100px; padding: 2px 9px; white-space: nowrap;
+  }
+
+  .clauses { display: flex; flex-direction: column; gap: 2px; }
+
+  .clause {
+    display: grid; grid-template-columns: 26px 1fr; gap: 13px; align-items: start;
+    padding: 9px 10px 9px 4px; border-radius: 4px;
+    background: none; border: none; font: inherit; color: var(--ink);
+    text-align: left; width: 100%; text-transform: none; letter-spacing: normal;
+    transition: background 0.16s ease;
+  }
+
+  button.clause { cursor: pointer; }
+  button.clause:hover { background: rgba(123, 79, 216, 0.07); }
+  button.clause:focus-visible { outline: 2px solid var(--violet); outline-offset: 1px; }
+
+  .box {
+    width: 20px; height: 20px; margin-top: 3px; border: 1.5px solid var(--ink-3);
+    border-radius: 3px; position: relative; flex: 0 0 auto; transition: border-color 0.18s ease;
+  }
+
+  .clause .txt { font-size: 16.5px; line-height: 1.5; transition: color 0.2s ease; }
+
+  .box.done, .clause.on .box { border-color: var(--violet); }
+
+  .box.done::after, .clause.on .box::after {
+    content: ""; position: absolute; left: 5px; top: 1px; width: 7px; height: 13px;
+    border: solid var(--violet); border-width: 0 2.4px 2.4px 0;
+    transform: rotate(42deg);
+  }
+
+  .clause.on .box::after { animation: tick 0.22s ease-out; }
+
+  @keyframes tick {
+    from { opacity: 0; transform: rotate(42deg) scale(0.4); }
+    to   { opacity: 1; transform: rotate(42deg) scale(1); }
+  }
+
+  .clause.on .txt { color: var(--ink-2); }
+  .clause.fixed .txt { color: var(--ink-2); }
+
+  /* две колонки */
+
+  .cols { display: flex; flex-direction: column; gap: 2px; }
+
+  .cols-head {
+    display: grid; grid-template-columns: 1fr 62px 62px; gap: 8px;
+    align-items: end; padding: 0 4px 7px;
+    border-bottom: 1px solid var(--rule); margin-bottom: 4px;
+  }
+
+  .cols-head .who {
+    font-family: var(--sans); font-size: 10px; font-weight: 620;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-3); text-align: center;
+  }
+
+  .cols-row {
+    display: grid; grid-template-columns: 1fr 62px 62px; gap: 8px;
+    align-items: center; padding: 10px 4px; border-radius: 4px;
+  }
+
+  .cols-row .txt { font-size: 16.5px; line-height: 1.45; }
+
+  .cell { display: grid; place-items: center; }
+
+  .cell .box { margin-top: 0; }
+
+  button.cell {
+    background: none; border: none; padding: 7px 0; cursor: pointer;
+    border-radius: 4px; transition: background 0.16s ease;
+  }
+
+  button.cell:hover { background: rgba(123, 79, 216, 0.09); }
+  button.cell:focus-visible { outline: 2px solid var(--violet); outline-offset: 1px; }
+  button.cell.on .box { border-color: var(--violet); }
+
+  button.cell.on .box::after {
+    content: ""; position: absolute; left: 5px; top: 1px; width: 7px; height: 13px;
+    border: solid var(--violet); border-width: 0 2.4px 2.4px 0;
+    transform: rotate(42deg); animation: tick 0.22s ease-out;
+  }
+
+  /* реквизиты сторон */
+
+  .parties { margin-top: 36px; display: flex; flex-direction: column; gap: 14px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+
+  .field label {
+    font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.17em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+
+  .field .fixed { font-size: 16px; color: var(--ink-2); }
+
+  .field input {
+    font-family: var(--serif); font-size: 16.5px; color: var(--ink);
+    background: rgba(123, 79, 216, 0.05);
+    border: none; border-bottom: 1.5px solid var(--rule);
+    padding: 9px 10px; border-radius: 3px 3px 0 0; width: 100%;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .field input:focus {
+    outline: none; border-bottom-color: var(--violet);
+    background: rgba(123, 79, 216, 0.09);
+  }
+
+  .field input::placeholder { color: var(--ink-3); font-style: italic; }
+
+  /* подпись */
+
+  .sign { margin-top: 26px; }
+
+  .sign .cap {
+    font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.17em;
+    text-transform: uppercase; color: var(--ink-3);
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; margin-bottom: 8px;
+  }
+
+  .pad { position: relative; border-bottom: 1.5px solid var(--ink); height: 120px; touch-action: none; }
+  .pad canvas { display: block; width: 100%; height: 100%; cursor: crosshair; }
+
+  .pad .ghost {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    pointer-events: none; font-style: italic; color: var(--ink-3);
+    font-size: 16px; transition: opacity 0.25s ease;
+  }
+
+  .pad.used .ghost { opacity: 0; }
+
+  .actions {
+    margin-top: 22px; display: flex; gap: 14px; align-items: center;
+    flex-wrap: wrap; justify-content: space-between;
+  }
+
+  .clear {
+    background: none; border: none; padding: 0; font-family: var(--sans);
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-3); cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+  }
+
+  .clear:hover { color: var(--violet); }
+
+  .status {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+
+  /* печать */
+
+  .seal {
+    position: absolute; right: clamp(16px, 5vw, 48px); bottom: clamp(60px, 10vw, 94px);
+    width: 140px; height: 140px; border-radius: 50%;
+    border: 3px double var(--pink); color: var(--pink);
+    display: grid; place-items: center; text-align: center;
+    transform: rotate(-13deg) scale(2.6); opacity: 0; pointer-events: none;
+    background: rgba(212, 85, 155, 0.08);
+  }
+
+  .seal.on { animation: stamp 0.5s cubic-bezier(.2,1.3,.45,1) forwards; }
+
+  @keyframes stamp {
+    0%   { opacity: 0; transform: rotate(-13deg) scale(2.6); }
+    70%  { opacity: 1; transform: rotate(-13deg) scale(0.92); }
+    100% { opacity: 1; transform: rotate(-13deg) scale(1); }
+  }
+
+  .seal .e { font-size: 26px; display: block; line-height: 1; margin-bottom: 3px; }
+
+  .seal .in {
+    font-family: var(--sans); font-size: 13px; font-weight: 640;
+    letter-spacing: 0.1em; line-height: 1.3;
+  }
+
+  .seal .sub {
+    font-family: var(--sans); font-size: 8.5px; letter-spacing: 0.2em;
+    margin-top: 4px; opacity: 0.85;
+  }
+
+  /* финал */
+
+  .after {
+    margin-top: 34px; text-align: center; display: none;
+    flex-direction: column; gap: 16px; align-items: center;
+  }
+
+  .after.on { display: flex; animation: rise 0.6s ease-out; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .after .cats { font-size: 42px; letter-spacing: 6px; line-height: 1; }
+
+  .after p {
+    margin: 0; font-size: 19.5px; font-style: italic; line-height: 1.55;
+    max-width: 30ch; text-wrap: balance;
+  }
+
+  .send { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 4px; }
+
+  .copy-box { width: 100%; margin-top: 10px; display: none; flex-direction: column; gap: 9px; align-items: center; }
+  .copy-box.on { display: flex; }
+
+  .copy-box img { max-width: 100%; border-radius: 4px; box-shadow: 0 18px 44px rgba(20, 5, 40, 0.5); }
+
+  .copy-box .tip {
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.04em;
+    color: var(--lilac); max-width: 42ch; line-height: 1.5;
+  }
+
+  @media (max-width: 480px) {
+    .cols-head, .cols-row { grid-template-columns: 1fr 48px 48px; gap: 4px; }
+    .cols-row .txt { font-size: 15.5px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #yes.loose { transition: none; }
+    .orn .cat { animation: none; }
+    .seal.on, .after.on { animation: none; }
+    .seal.on { opacity: 1; transform: rotate(-13deg) scale(1); }
+  }
+</style>
+
+<canvas id="petals"></canvas>
+
+<!-- ───── сцена 1 ───── -->
+<section id="s1" class="scene on">
+  <div>
+    <div class="orn"><i></i><span class="cat">🙀</span><i></i></div>
+    <h1>Ты всё ещё злишься?</h1>
+    <div class="answers">
+      <button id="yes" type="button"><span class="e">😿</span>Да</button>
+      <button id="no" class="solid" type="button"><span class="e">😻</span>Нет</button>
+    </div>
+    <p class="hint" id="hint"></p>
+  </div>
+</section>
+
+<!-- ───── сцена 2 ───── -->
+<section id="s2" class="scene">
+  <div class="wrap">
+    <div class="sheet" id="sheet">
+
+      <div class="doc-head">
+        <span class="cats">😽 💜 😻</span>
+        <span class="label">между двумя людьми</span>
+        <h2>Договор о примирении</h2>
+        <span class="no" id="docno"></span>
+      </div>
+
+      <div class="rule"></div>
+
+      <p class="preamble">Настоящий Договор заключён между Стороной&nbsp;А (далее — «я») и Стороной&nbsp;Б (далее — «ты») по итогам событий, подробности которых обе Стороны уже помнят по-разному. Договор вступает в силу с момента подписания и действует бессрочно.</p>
+
+      <div id="articles"></div>
+
+      <div class="parties">
+        <div class="field">
+          <label>Сторона А</label>
+          <span class="fixed">Даша · dkrivkina@gmail.com</span>
+        </div>
+        <div class="field">
+          <label>Сторона Б — впиши свою почту</label>
+          <input type="email" id="email" placeholder="твоя почта" autocomplete="email" spellcheck="false">
+        </div>
+      </div>
+
+      <div class="sign">
+        <div class="cap">
+          <span>Подпись Стороны Б</span>
+          <span class="status" id="status"></span>
+        </div>
+        <div class="pad" id="pad">
+          <canvas id="sig"></canvas>
+          <div class="ghost" id="ghost">распишись здесь</div>
+        </div>
+        <div class="actions">
+          <button class="clear" id="clear" type="button">стереть</button>
+          <button class="solid" id="submit" type="button" disabled><span class="e">😽</span>Подписать</button>
+        </div>
+      </div>
+
+      <div class="seal" id="seal">
+        <div>
+          <span class="e">😻</span>
+          <div class="in">ПОМИРИЛИСЬ</div>
+          <div class="sub">ОКОНЧАТЕЛЬНО</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="after" id="after">
+      <span class="cats">😻 😽 😻</span>
+      <p>Ну вот и всё. Иди сюда, я тебя обниму</p>
+      <div class="send">
+        <button class="solid" id="mail" type="button"><span class="e">💌</span>Отправить Даше</button>
+        <button id="save" type="button"><span class="e">⬇️</span>Сохранить</button>
+      </div>
+      <div class="copy-box" id="copyBox">
+        <p class="tip">Вот подписанный экземпляр. Сохрани картинку себе и прикрепи к письму — почта откроется уже заполненной</p>
+        <img id="copyImg" alt="Подписанный договор о примирении">
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  /* ══════════ ЧТО МЕНЯТЬ ══════════ */
+
+  const HER = { name: "Даша", email: "dkrivkina@gmail.com" };
+  const HIM = { name: "Женя" };
+
+  /* mode: "hers" — уже отмечено Дашей, он только читает
+           "his"  — отмечает он
+           "both" — две колонки: у Даши отмечено, он отмечает свою  */
+
+  const ARTICLES = [
+    {
+      cat: "🙀",
+      title: "Что признаёт Сторона А",
+      mode: "hers",
+      items: [
+        "Я была не права. Не во всём, но в главном — да",
+        "Я бываю излишне эмоциональна. Сейчас тяжёлый период, я стараюсь это контролировать",
+        "Я говорю на эмоциях всякую чушь"
+      ]
+    },
+    {
+      cat: "😽",
+      title: "Что обязуется Сторона А",
+      mode: "hers",
+      items: [
+        "Если злюсь — уходить остыть, чтобы не наговорить глупостей",
+        "Быть мягче",
+        "Помнить, что ты мой самый близкий человек"
+      ]
+    },
+    {
+      cat: "😻",
+      title: "Что требуется от Стороны Б",
+      mode: "his",
+      items: [
+        "Не доставать это из рукава через полгода посреди другого спора",
+        "Не подливать масла в огонь",
+        "Быть мягче"
+      ]
+    },
+    {
+      cat: "😸",
+      title: "Общие положения",
+      mode: "both",
+      items: [
+        "Стороны признают, что ссора была глупая",
+        "Договор расторжению не подлежит",
+        "Стороны по-прежнему друг друга любят, что подтверждается всем предыдущим опытом"
+      ]
+    }
+  ];
+
+  const HINTS = [
+    "", "так я и думала 😼", "попробуй ещё 😹", "не поймаешь 😾",
+    "упрямый 🙀", "ну хватит уже 😿", "ладно, она не дастся — жми «Нет» 😻"
+  ];
+
+  const FINAL_TEXT = "Ну вот и всё. Иди сюда, я тебя обниму";
+
+  const PRE = "Настоящий Договор заключён между Стороной А (далее — «я») и Стороной Б (далее — «ты») по итогам событий, подробности которых обе Стороны уже помнят по-разному. Договор вступает в силу с момента подписания и действует бессрочно.";
+
+  /* ══════════ дальше код ══════════ */
+
+  const yes = document.getElementById("yes");
+  const no = document.getElementById("no");
+  const hint = document.getElementById("hint");
+  const s1 = document.getElementById("s1");
+  const s2 = document.getElementById("s2");
+
+  let runs = 0;
+
+  function escape() {
+    const r = yes.getBoundingClientRect();
+
+    if (!yes.classList.contains("loose")) {
+      yes.style.left = r.left + "px";
+      yes.style.top = r.top + "px";
+      yes.style.width = r.width + "px";
+      yes.classList.add("loose");
+    }
+
+    const pad = 16;
+    const noR = no.getBoundingClientRect();
+    let x = r.left, y = r.top;
+
+    for (let i = 0; i < 50; i++) {
+      const nx = pad + Math.random() * (innerWidth - r.width - pad * 2);
+      const ny = pad + Math.random() * (innerHeight - r.height - pad * 2);
+      const far = Math.hypot(nx - r.left, ny - r.top) > 150;
+      const clearsNo =
+        nx + r.width < noR.left - 28 || nx > noR.right + 28 ||
+        ny + r.height < noR.top - 28 || ny > noR.bottom + 28;
+      if (far && clearsNo) { x = nx; y = ny; break; }
+    }
+
+    yes.style.left = x + "px";
+    yes.style.top = y + "px";
+
+    runs++;
+    const h = HINTS[Math.min(runs, HINTS.length - 1)];
+    hint.textContent = h;
+    hint.classList.toggle("show", !!h);
+  }
+
+  yes.addEventListener("mouseenter", escape);
+  yes.addEventListener("focus", escape);
+  yes.addEventListener("pointerdown", (e) => { e.preventDefault(); escape(); });
+  yes.addEventListener("click", (e) => e.preventDefault());
+
+  no.addEventListener("click", () => {
+    s1.classList.remove("on");
+    s2.classList.add("on");
+    window.scrollTo(0, 0);
+    sizeSig();
+  });
+
+  /* ─── договор ─── */
+
+  const now = new Date();
+  const DATE_STR = now.toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
+  document.getElementById("docno").textContent = "№ 1 от " + DATE_STR;
+
+  const box = document.getElementById("articles");
+  let total = 0, ticked = 0;
+
+  ARTICLES.forEach(a => {
+    const sec = document.createElement("div");
+    sec.className = "art";
+
+    const head = document.createElement("div");
+    head.className = "art-head";
+    head.innerHTML = `<span class="e">${a.cat}</span><h3>${a.title}</h3>` +
+      (a.mode === "hers" ? `<span class="by">Даша уже отметила</span>` : "");
+    sec.appendChild(head);
+
+    if (a.mode === "both") {
+      const t = document.createElement("div");
+      t.className = "cols";
+      t.innerHTML = `<div class="cols-head"><span></span><span class="who">${HER.name}</span><span class="who">${HIM.name}</span></div>`;
+
+      a.items.forEach(text => {
+        total++;
+        const row = document.createElement("div");
+        row.className = "cols-row";
+
+        const txt = document.createElement("span");
+        txt.className = "txt";
+        txt.textContent = text;
+
+        const hers = document.createElement("span");
+        hers.className = "cell";
+        hers.innerHTML = `<span class="box done"></span>`;
+
+        const his = document.createElement("button");
+        his.className = "cell";
+        his.type = "button";
+        his.setAttribute("aria-label", "Отметить: " + text);
+        his.setAttribute("aria-pressed", "false");
+        his.innerHTML = `<span class="box"></span>`;
+        his.addEventListener("click", () => {
+          if (his.classList.contains("on")) return;
+          his.classList.add("on");
+          his.setAttribute("aria-pressed", "true");
+          ticked++;
+          refresh();
+        });
+
+        row.append(txt, hers, his);
+        t.appendChild(row);
+      });
+
+      sec.appendChild(t);
+    } else {
+      const list = document.createElement("div");
+      list.className = "clauses";
+
+      a.items.forEach(text => {
+        if (a.mode === "hers") {
+          const d = document.createElement("div");
+          d.className = "clause fixed";
+          d.innerHTML = `<span class="box done"></span><span class="txt">${text}</span>`;
+          list.appendChild(d);
+        } else {
+          total++;
+          const b = document.createElement("button");
+          b.className = "clause";
+          b.type = "button";
+          b.setAttribute("aria-pressed", "false");
+          b.innerHTML = `<span class="box"></span><span class="txt">${text}</span>`;
+          b.addEventListener("click", () => {
+            if (b.classList.contains("on")) return;
+            b.classList.add("on");
+            b.setAttribute("aria-pressed", "true");
+            ticked++;
+            refresh();
+          });
+          list.appendChild(b);
+        }
+      });
+
+      sec.appendChild(list);
+    }
+
+    box.appendChild(sec);
+  });
+
+  /* ─── подпись ─── */
+
+  const pad = document.getElementById("pad");
+  const cv = document.getElementById("sig");
+  const sctx = cv.getContext("2d");
+  const submit = document.getElementById("submit");
+  const status = document.getElementById("status");
+  const email = document.getElementById("email");
+  let drawn = false, drawing = false;
+
+  function sizeSig() {
+    const r = pad.getBoundingClientRect();
+    if (!r.width) return;
+    const img = drawn ? cv.toDataURL() : null;
+    cv.width = r.width * devicePixelRatio;
+    cv.height = r.height * devicePixelRatio;
+    sctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    sctx.strokeStyle = "#3A2A52";
+    sctx.lineWidth = 2.4;
+    sctx.lineCap = "round";
+    sctx.lineJoin = "round";
+    if (img) { const i = new Image(); i.onload = () => sctx.drawImage(i, 0, 0, r.width, r.height); i.src = img; }
+  }
+
+  addEventListener("resize", sizeSig);
+
+  function pos(e) {
+    const r = cv.getBoundingClientRect();
+    return [e.clientX - r.left, e.clientY - r.top];
+  }
+
+  cv.addEventListener("pointerdown", e => {
+    drawing = true;
+    cv.setPointerCapture(e.pointerId);
+    const [x, y] = pos(e);
+    sctx.beginPath();
+    sctx.moveTo(x, y);
+    if (!drawn) { drawn = true; pad.classList.add("used"); refresh(); }
+  });
+
+  cv.addEventListener("pointermove", e => {
+    if (!drawing) return;
+    const [x, y] = pos(e);
+    sctx.lineTo(x, y);
+    sctx.stroke();
+  });
+
+  cv.addEventListener("pointerup", () => { drawing = false; });
+  cv.addEventListener("pointercancel", () => { drawing = false; });
+
+  document.getElementById("clear").addEventListener("click", () => {
+    sctx.clearRect(0, 0, cv.width, cv.height);
+    drawn = false;
+    pad.classList.remove("used");
+    refresh();
+  });
+
+  email.addEventListener("input", refresh);
+
+  function okMail() { return /\S+@\S+\.\S+/.test(email.value.trim()); }
+
+  function refresh() {
+    submit.disabled = !(ticked === total && drawn && okMail());
+    if (ticked < total) status.textContent = `отмечено ${ticked} из ${total}`;
+    else if (!okMail()) status.textContent = "осталась почта";
+    else if (!drawn) status.textContent = "осталась подпись";
+    else status.textContent = "можно подписывать";
+  }
+  refresh();
+
+  /* ─── подписанный экземпляр картинкой ─── */
+
+  function wrap(ctx, text, maxW) {
+    const words = text.split(" ");
+    const lines = [];
+    let line = "";
+    for (const w of words) {
+      const t = line ? line + " " + w : w;
+      if (ctx.measureText(t).width > maxW && line) { lines.push(line); line = w; }
+      else line = t;
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  function check(x, cx, cy) {
+    x.strokeStyle = "#7B4FD8";
+    x.lineWidth = 2.6;
+    x.lineCap = "round";
+    x.lineJoin = "round";
+    x.beginPath();
+    x.moveTo(cx - 8, cy);
+    x.lineTo(cx - 2, cy + 6);
+    x.lineTo(cx + 9, cy - 8);
+    x.stroke();
+  }
+
+  function renderCopy() {
+    const W = 1040, M = 74, CW = W - M * 2;
+    const COLW = 90;
+    const c = document.createElement("canvas");
+    const x = c.getContext("2d");
+    c.width = W; c.height = 10;
+
+    // высота
+    let H = 96 + 46 + 26 + 34;
+    x.font = "17px Georgia";
+    H += wrap(x, PRE, CW).length * 27 + 26;
+    for (const a of ARTICLES) {
+      H += 48;
+      if (a.mode === "both") H += 26;
+      x.font = "19px Georgia";
+      const tw = a.mode === "both" ? CW - COLW * 2 - 20 : CW - 40;
+      for (const it of a.items) H += wrap(x, it, tw).length * 28 + 10;
+      H += 8;
+    }
+    H += 54 + 30 + 30 + 150 + 60;
+
+    c.width = W; c.height = H;
+
+    const g = x.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, "#FBF7FB");
+    g.addColorStop(1, "#F1E9F4");
+    x.fillStyle = g;
+    x.fillRect(0, 0, W, H);
+
+    let y = 76;
+    x.textAlign = "center";
+    x.font = "34px serif";
+    x.fillText("😽 💜 😻", W / 2, y);
+    y += 44;
+
+    x.fillStyle = "#D4559B";
+    x.font = "600 12px sans-serif";
+    x.fillText("М Е Ж Д У   Д В У М Я   Л Ю Д Ь М И", W / 2, y);
+    y += 36;
+
+    x.fillStyle = "#291E33";
+    x.font = "36px Georgia";
+    x.fillText("Договор о примирении", W / 2, y);
+    y += 28;
+
+    x.fillStyle = "#9A8CA6";
+    x.font = "13px sans-serif";
+    x.fillText("№ 1 от " + DATE_STR, W / 2, y);
+    y += 34;
+
+    x.strokeStyle = "#E0D4E8";
+    x.lineWidth = 1;
+    x.beginPath(); x.moveTo(M, y); x.lineTo(W - M, y); x.stroke();
+    y += 34;
+
+    x.textAlign = "left";
+    x.fillStyle = "#6B5B7A";
+    x.font = "17px Georgia";
+    for (const l of wrap(x, PRE, CW)) { x.fillText(l, M, y); y += 27; }
+    y += 20;
+
+    const c1 = W - M - COLW * 1.5;
+    const c2 = W - M - COLW * 0.5;
+
+    for (const a of ARTICLES) {
+      y += 20;
+      x.font = "26px serif";
+      x.textAlign = "left";
+      x.fillText(a.cat, M, y + 2);
+      x.fillStyle = "#7B4FD8";
+      x.font = "bold 14px sans-serif";
+      x.fillText(a.title.toUpperCase(), M + 38, y);
+
+      if (a.mode === "hers") {
+        x.fillStyle = "#D4559B";
+        x.font = "11px sans-serif";
+        x.fillText("ДАША УЖЕ ОТМЕТИЛА", M + 42 + x.measureText(a.title.toUpperCase()).width * 1.35, y);
+      }
+      y += 28;
+
+      if (a.mode === "both") {
+        x.fillStyle = "#9A8CA6";
+        x.font = "bold 11px sans-serif";
+        x.textAlign = "center";
+        x.fillText(HER.name.toUpperCase(), c1, y);
+        x.fillText(HIM.name.toUpperCase(), c2, y);
+        x.textAlign = "left";
+        x.strokeStyle = "#E0D4E8";
+        x.lineWidth = 1;
+        x.beginPath(); x.moveTo(M, y + 8); x.lineTo(W - M, y + 8); x.stroke();
+        y += 26;
+      }
+
+      const tw = a.mode === "both" ? CW - COLW * 2 - 20 : CW - 40;
+
+      for (const it of a.items) {
+        x.fillStyle = "#291E33";
+        x.font = "19px Georgia";
+        const ls = wrap(x, it, tw);
+        const tx = a.mode === "both" ? M : M + 38;
+        ls.forEach((l, i) => x.fillText(l, tx, y + i * 28));
+
+        if (a.mode === "both") {
+          check(x, c1, y - 6);
+          check(x, c2, y - 6);
+        } else {
+          check(x, M + 14, y - 6);
+        }
+
+        y += ls.length * 28 + 10;
+      }
+      y += 8;
+    }
+
+    y += 34;
+    x.fillStyle = "#9A8CA6";
+    x.font = "12px sans-serif";
+    x.fillText("СТОРОНА А", M, y);
+    x.fillText("СТОРОНА Б", W / 2 + 20, y);
+    y += 24;
+    x.fillStyle = "#6B5B7A";
+    x.font = "17px Georgia";
+    x.fillText(HER.name + " · " + HER.email, M, y);
+    x.fillText(HIM.name + " · " + email.value.trim(), W / 2 + 20, y);
+    y += 30;
+
+    const sigH = 130;
+    x.drawImage(cv, W / 2 + 20, y, Math.min(360, CW / 2), sigH);
+    x.strokeStyle = "#291E33";
+    x.lineWidth = 1.6;
+    x.beginPath();
+    x.moveTo(W / 2 + 20, y + sigH);
+    x.lineTo(W - M, y + sigH);
+    x.stroke();
+
+    const sx = M + 110, sy = y + sigH - 48;
+    x.save();
+    x.translate(sx, sy);
+    x.rotate(-13 * Math.PI / 180);
+    x.fillStyle = "rgba(212,85,155,0.08)";
+    x.beginPath(); x.arc(0, 0, 70, 0, Math.PI * 2); x.fill();
+    x.strokeStyle = "#D4559B";
+    x.lineWidth = 2;
+    x.beginPath(); x.arc(0, 0, 70, 0, Math.PI * 2); x.stroke();
+    x.beginPath(); x.arc(0, 0, 64, 0, Math.PI * 2); x.stroke();
+    x.textAlign = "center";
+    x.font = "26px serif";
+    x.fillText("😻", 0, -14);
+    x.fillStyle = "#D4559B";
+    x.font = "bold 15px sans-serif";
+    x.fillText("ПОМИРИЛИСЬ", 0, 14);
+    x.font = "9px sans-serif";
+    x.fillText("О К О Н Ч А Т Е Л Ь Н О", 0, 30);
+    x.restore();
+
+    return c;
+  }
+
+  /* ─── печать, финал, отправка ─── */
+
+  let copyData = null;
+
+  submit.addEventListener("click", () => {
+    document.getElementById("seal").classList.add("on");
+    submit.disabled = true;
+    submit.innerHTML = '<span class="e">💜</span>Подписано';
+    document.getElementById("clear").style.visibility = "hidden";
+    email.disabled = true;
+    status.textContent = "договор вступил в силу";
+    rain();
+
+    try {
+      const c = renderCopy();
+      copyData = c.toDataURL("image/png");
+      document.getElementById("copyImg").src = copyData;
+    } catch (err) { copyData = null; }
+
+    setTimeout(() => {
+      const a = document.getElementById("after");
+      a.querySelector("p").textContent = FINAL_TEXT;
+      a.classList.add("on");
+      a.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 700);
+  });
+
+  document.getElementById("mail").addEventListener("click", () => {
+    const mine = email.value.trim();
+    const body = [
+      "Я подписал.",
+      "",
+      "Договор о примирении № 1 от " + DATE_STR,
+      "Сторона А: " + HER.name + " (" + HER.email + ")",
+      "Сторона Б: " + HIM.name + " (" + mine + ")",
+      "",
+      "Все пункты отмечены, подпись поставлена, печать стоит.",
+      "Иду обниматься 😽",
+      "",
+      "(подписанный экземпляр — картинкой во вложении)"
+    ].join("\n");
+
+    const href = "mailto:" + encodeURIComponent(HER.email) +
+      "?cc=" + encodeURIComponent(mine) +
+      "&subject=" + encodeURIComponent("Договор о примирении — подписано 💜") +
+      "&body=" + encodeURIComponent(body);
+
+    document.getElementById("copyBox").classList.add("on");
+    location.href = href;
+  });
+
+  document.getElementById("save").addEventListener("click", () => {
+    document.getElementById("copyBox").classList.add("on");
+    if (!copyData) return;
+    const a = document.createElement("a");
+    a.href = copyData;
+    a.download = "dogovor-o-primirenii.png";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  });
+
+  /* ─── падают лепестки и коты ─── */
+
+  const pc = document.getElementById("petals");
+  const pctx = pc.getContext("2d");
+  let bits = [];
+
+  function sizeP() {
+    pc.width = innerWidth * devicePixelRatio;
+    pc.height = innerHeight * devicePixelRatio;
+    pc.style.width = innerWidth + "px";
+    pc.style.height = innerHeight + "px";
+    pctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  }
+  sizeP();
+  addEventListener("resize", sizeP);
+
+  const PC = ["#C9A8F0", "#D4559B", "#EFA8CE", "#9B6FE0", "#F3DCF0"];
+  const CATS = ["😻", "😽", "😸", "💜", "😺"];
+
+  function rain() {
+    for (let i = 0; i < 80; i++) {
+      bits.push({
+        kind: "petal",
+        x: Math.random() * innerWidth,
+        y: -40 - Math.random() * innerHeight * 0.8,
+        vy: 1.4 + Math.random() * 2.2,
+        sway: 0.5 + Math.random() * 1.4,
+        phase: Math.random() * Math.PI * 2,
+        rx: 4 + Math.random() * 5,
+        ry: 7 + Math.random() * 7,
+        rot: Math.random() * Math.PI,
+        vr: (Math.random() - 0.5) * 0.05,
+        c: PC[(Math.random() * PC.length) | 0],
+        a: 0.6 + Math.random() * 0.4
+      });
+    }
+    for (let i = 0; i < 22; i++) {
+      bits.push({
+        kind: "cat",
+        x: Math.random() * innerWidth,
+        y: -60 - Math.random() * innerHeight * 0.9,
+        vy: 1.1 + Math.random() * 1.8,
+        sway: 0.6 + Math.random() * 1.5,
+        phase: Math.random() * Math.PI * 2,
+        size: 24 + Math.random() * 20,
+        rot: (Math.random() - 0.5) * 0.5,
+        vr: (Math.random() - 0.5) * 0.03,
+        g: CATS[(Math.random() * CATS.length) | 0],
+        a: 1
+      });
+    }
+    requestAnimationFrame(fall);
+  }
+
+  function fall() {
+    pctx.clearRect(0, 0, innerWidth, innerHeight);
+    bits = bits.filter(b => b.y < innerHeight + 80);
+    for (const b of bits) {
+      b.y += b.vy;
+      b.phase += 0.02;
+      b.x += Math.sin(b.phase) * b.sway;
+      b.rot += b.vr;
+      pctx.save();
+      pctx.translate(b.x, b.y);
+      pctx.rotate(b.rot);
+      pctx.globalAlpha = b.a;
+      if (b.kind === "cat") {
+        pctx.font = b.size + "px serif";
+        pctx.textAlign = "center";
+        pctx.textBaseline = "middle";
+        pctx.fillText(b.g, 0, 0);
+      } else {
+        pctx.fillStyle = b.c;
+        pctx.beginPath();
+        pctx.ellipse(0, 0, b.rx, b.ry, 0, 0, Math.PI * 2);
+        pctx.fill();
+      }
+      pctx.restore();
+    }
+    if (bits.length) requestAnimationFrame(fall);
+    else pctx.clearRect(0, 0, innerWidth, innerHeight);
+  }
+</script>
+
+</body>
+</html>
